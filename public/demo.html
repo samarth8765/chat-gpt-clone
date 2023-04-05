@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  joke api
+  <input type="text" id="joke" />
+  <button id="btn">Button</button>
+  <div id="ans"></div>
+  <script>
+    const input = document.getElementById("joke");
+    const btn = document.getElementById("btn");
+    const div = document.getElementById("ans");
+
+    const getData = async () => {
+      const res = await fetch("https://v2.jokeapi.dev/joke/Any");
+      const data = await res.json();
+
+      if (data.type == "twopart") {
+        div.innerText += data.setup;
+      } else {
+        div.innerText += data.joke;
+      }
+    };
+    btn.addEventListener("click", getData);
+  </script>
+</body>
+
+</html>
